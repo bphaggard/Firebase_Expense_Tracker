@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.firebaselogin"
-        minSdk = 29
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -43,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.4"
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
     packaging {
         resources {
@@ -71,10 +71,19 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
-    implementation ("androidx.navigation:navigation-compose:2.7.7")
-    implementation ("com.google.dagger:hilt-android:2.50")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
-    kapt ("com.google.dagger:hilt-android-compiler:2.48")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation(platform(libs.firebase.bom))
+    implementation (libs.androidx.navigation.compose)
+    implementation (libs.hilt.android)
+    implementation (libs.androidx.hilt.navigation.compose)
+    kapt (libs.hilt.android.compiler)
+    implementation (libs.kotlinx.coroutines.android)
+    implementation(libs.library.base)
+    implementation(libs.kotlinx.coroutines.core)
+
+    //Coil library
+    implementation (libs.coil.compose)
+
+    implementation(libs.kotlinx.serialization.json)
+    implementation (libs.datetime)
+    coreLibraryDesugaring (libs.desugar.jdk.libs)
 }

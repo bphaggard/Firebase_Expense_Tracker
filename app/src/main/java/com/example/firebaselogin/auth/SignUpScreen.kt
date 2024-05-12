@@ -37,6 +37,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -58,6 +59,7 @@ import com.example.firebaselogin.ui.theme.leagueFamily
 @Composable
 fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
     val fieldColor = MaterialTheme.colorScheme.onBackground
+    var isFocused by remember { mutableStateOf(false) }
     val empty by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -82,7 +84,7 @@ fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
                 .matchParentSize()
-                .blur(radius = 10.dp)
+                .blur(if (isFocused)10.dp else 0.dp)
         )
     }
     Column(
@@ -151,7 +153,9 @@ fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
             shape = RoundedCornerShape(20.dp),
             modifier = Modifier
                 .width(300.dp)
-                .height(60.dp),
+                .height(60.dp)
+                .onFocusChanged { focusState ->
+                           isFocused = focusState.isFocused },
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedIndicatorColor = fieldColor,
                 focusedIndicatorColor = fieldColor,
@@ -229,7 +233,9 @@ fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
             shape = RoundedCornerShape(20.dp),
             modifier = Modifier
                 .width(300.dp)
-                .height(60.dp),
+                .height(60.dp)
+                .onFocusChanged { focusState ->
+                    isFocused = focusState.isFocused },
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedIndicatorColor = fieldColor,
                 focusedIndicatorColor = fieldColor,
@@ -305,7 +311,9 @@ fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
             shape = RoundedCornerShape(20.dp),
             modifier = Modifier
                 .width(300.dp)
-                .height(60.dp),
+                .height(60.dp)
+                .onFocusChanged { focusState ->
+                    isFocused = focusState.isFocused },
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedIndicatorColor = fieldColor,
                 focusedIndicatorColor = fieldColor,
@@ -387,7 +395,7 @@ fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
             }
         }
         if (viewModel.signedIn.value) {
-            navController.navigate(DestinationScreen.Success.route)
+            navController.navigate(DestinationScreen.Home.route)
         }
         viewModel.signedIn.value = false
     }

@@ -12,8 +12,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.firebaselogin.auth.LoginScreen
 import com.example.firebaselogin.auth.MainScreen
 import com.example.firebaselogin.auth.SignUpScreen
-import com.example.firebaselogin.auth.SuccessScreen
+import com.example.firebaselogin.auth.HomeScreen
 import com.example.firebaselogin.main.NotificationMessage
+import com.example.firebaselogin.screens.AddScreen
+import com.example.firebaselogin.screens.TransactionScreen
 import com.example.firebaselogin.ui.theme.FirebaseLoginTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,7 +38,9 @@ sealed class DestinationScreen(val route: String) {
     object Main: DestinationScreen("Main")
     object SignUp: DestinationScreen("SignUp")
     object Login: DestinationScreen("Login")
-    object Success: DestinationScreen("Success")
+    object Home: DestinationScreen("Home")
+    object Add: DestinationScreen("Add")
+    object Transactions: DestinationScreen("Transactions")
 }
 
 @Composable
@@ -56,8 +60,14 @@ fun AuthenticationApp() {
         composable(DestinationScreen.Login.route) {
             LoginScreen(navController, viewModel)
         }
-        composable(DestinationScreen.Success.route) {
-            SuccessScreen(navController, viewModel)
+        composable(DestinationScreen.Home.route) {
+            HomeScreen(navController)
+        }
+        composable(DestinationScreen.Add.route) {
+            AddScreen(navController)
+        }
+        composable(DestinationScreen.Transactions.route) {
+            TransactionScreen(navController)
         }
     }
 }

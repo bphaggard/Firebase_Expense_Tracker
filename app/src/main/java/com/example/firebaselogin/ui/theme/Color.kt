@@ -2,6 +2,10 @@ package com.example.firebaselogin.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val blueGrad1 = Color(0xFF2980b9)
+val blueGrad2 = Color(0xFF6dd5fa)
+val blueGrad3 = Color(0xFFC9E6FF)
+
 val md_theme_light_primary = Color(0xFF006492)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFC9E6FF)

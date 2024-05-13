@@ -42,6 +42,7 @@ import com.example.firebaselogin.ui.theme.leagueFamily
 fun AddScreen(navController: NavController){
 
     var amount by remember { mutableStateOf("") }
+    var title by remember { mutableStateOf("") }
     val category = listOf("Food", "Entertainment", "Shopping", "Travel", "Other", "Income", "Expense","Groceries")
     var isExpanded by remember { mutableStateOf(false) }
     var selectedCategory by remember { mutableStateOf(category[0]) }
@@ -67,6 +68,13 @@ fun AddScreen(navController: NavController){
                           onValueChange = { amount = it },
                           label = { Text(text = "Amount")},
                           placeholder = {Text("Enter Amount")}
+                      )
+                      Spacer(modifier = Modifier.height(20.dp))
+                      OutlinedTextField(
+                          value = title,
+                          onValueChange = { title = it },
+                          label = { Text(text = "Title")},
+                          placeholder = {Text("Enter Title")}
                       )
                       Spacer(modifier = Modifier.height(20.dp))
                       ExposedDropdownMenuBox(

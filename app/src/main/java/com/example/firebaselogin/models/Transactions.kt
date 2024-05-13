@@ -1,17 +1,15 @@
 package com.example.firebaselogin.models
 
 
-import io.realm.kotlin.types.EmbeddedRealmObject
-import io.realm.kotlin.types.RealmObject
-import io.realm.kotlin.types.annotations.PrimaryKey
-import org.mongodb.kbson.ObjectId
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-
-class Transactions: RealmObject {
-    //@PrimaryKey
-    //var _id: ObjectId = ObjectId()
-    //var category: String = ""
-    //var amount: Double = 0.0
-    //var date: String = ""
-    var title: String = ""
-}
+@Entity(tableName = "transactions")
+data class Transactions(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    val title: String,
+    val amount: Double,
+    val category: String,
+    val date: String
+)

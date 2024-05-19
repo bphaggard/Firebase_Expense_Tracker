@@ -24,9 +24,15 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions WHERE id = :id")
     fun getTransactionById(id: Int): Flow<Transactions>
 
-    @Query("SELECT * FROM transactions ORDER BY TITLE")
+    @Query("SELECT * FROM transactions")
     fun getAllTransactions(): Flow<List<Transactions>>
 
     @Query("DELETE FROM transactions WHERE id = :id")
     suspend fun deleteTransactionById(id: Int)
+
+    @Query("SELECT SUM(amount) FROM transactions WHERE category = 'Income'")
+    fun getTotalIncome(): Flow<Double>
+
+    @Query("SELECT SUM(amount) FROM transactions WHERE category = 'Expense'")
+    fun getTotalExpense(): Flow<Double>
 }

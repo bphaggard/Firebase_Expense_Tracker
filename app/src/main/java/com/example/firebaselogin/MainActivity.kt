@@ -3,16 +3,17 @@ package com.example.firebaselogin
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.firebaselogin.auth.HomeScreen
 import com.example.firebaselogin.auth.LoginScreen
 import com.example.firebaselogin.auth.MainScreen
 import com.example.firebaselogin.auth.SignUpScreen
-import com.example.firebaselogin.auth.HomeScreen
 import com.example.firebaselogin.main.NotificationMessage
 import com.example.firebaselogin.screens.AddScreen
 import com.example.firebaselogin.screens.TransactionScreen
@@ -21,6 +22,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val transactionViewModel: TransactionViewModel by viewModels()
+
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(this.window, false)
@@ -28,7 +31,7 @@ class MainActivity : ComponentActivity() {
             window.statusBarColor = getColor(R.color.black)
             window.navigationBarColor = getColor(R.color.black)
             FirebaseLoginTheme {
-                AuthenticationApp()
+                AuthenticationApp(transactionViewModel)
             }
         }
     }
@@ -44,7 +47,7 @@ sealed class DestinationScreen(val route: String, val icon: Int, val label: Stri
 }
 
 @Composable
-fun AuthenticationApp() {
+fun AuthenticationApp(transactionViewModel: TransactionViewModel) {
     val viewModel = hiltViewModel<FbViewModel>()
     val navController = rememberNavController()
 
@@ -64,10 +67,10 @@ fun AuthenticationApp() {
             HomeScreen(navController)
         }
         composable(DestinationScreen.Add.route) {
-            AddScreen(navController)
+            AddScreen(navController, transactionViewModel)
         }
         composable(DestinationScreen.Transactions.route) {
-            TransactionScreen(navController)
+            TransactionScreen(navController, transactionViewModel)
         }
     }
 }

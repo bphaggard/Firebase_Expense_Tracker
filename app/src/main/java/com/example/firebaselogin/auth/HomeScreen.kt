@@ -56,12 +56,8 @@ fun HomeScreen(navController: NavController) {
                     Text(
                         text = "Welcome!",
                         fontFamily = mainFont,
-                        fontSize = 26.sp)
-                },
-                navigationIcon = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Filled.ArrowBack, null)
-                    }
+                        fontSize = 26.sp,
+                        modifier = Modifier.padding(start = 10.dp))
                 },
                 colors = TopAppBarDefaults.topAppBarColors(Color.Transparent)
             )

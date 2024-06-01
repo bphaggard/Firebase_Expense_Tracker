@@ -168,9 +168,6 @@ fun HomeScreen(navController: NavController) {
                     )
                 }
             }
-        },
-        bottomBar = {
-            BottomNavigationBar(navController)
         }
     )
 }

@@ -50,9 +50,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.firebaselogin.DestinationScreen
 import com.example.firebaselogin.FbViewModel
 import com.example.firebaselogin.R
+import com.example.firebaselogin.navigation.DestinationScreen
 import com.example.firebaselogin.ui.theme.leagueFamily
 
 @OptIn(ExperimentalMaterial3Api::class)

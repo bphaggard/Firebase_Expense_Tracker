@@ -1,7 +1,9 @@
 package com.example.firebaselogin.screens
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.firebaselogin.TransactionViewModel
-import com.example.firebaselogin.navigation.BottomNavigationBar
 import com.example.firebaselogin.parts.TransactionCard
 import com.example.firebaselogin.parts.categoryImageMap
 
@@ -33,10 +34,11 @@ fun TransactionScreen(
                     .fillMaxSize()
                     .padding(innerPadding),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(14.dp)
+                verticalArrangement = Arrangement.Top
             ){
                 items(transactionList) { transaction ->
                     categoryImageMap[transaction.category]?.let {
+                        Spacer(modifier = Modifier.height(16.dp))
                         TransactionCard(
                             image = it,
                             title = transaction.title,
@@ -45,9 +47,6 @@ fun TransactionScreen(
                     }
                 }
             }
-        },
-        bottomBar = {
-            BottomNavigationBar(navController)
         }
     )
 }

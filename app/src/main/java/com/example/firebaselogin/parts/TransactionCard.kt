@@ -68,7 +68,7 @@ fun TransactionCard(
                 horizontalAlignment = Alignment.End
             ) {
                 Text(
-                    text = amount,
+                    text = "$amount Kč",
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )

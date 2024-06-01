@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.firebaselogin.DestinationScreen
 import com.example.firebaselogin.R
+import com.example.firebaselogin.navigation.DestinationScreen
 import com.example.firebaselogin.ui.theme.FirebaseLoginTheme
 import com.example.firebaselogin.ui.theme.leagueFamily
 

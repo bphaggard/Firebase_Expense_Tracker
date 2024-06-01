@@ -12,7 +12,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.example.firebaselogin.DestinationScreen
 
 @Composable
 fun RowScope.BottomItem(

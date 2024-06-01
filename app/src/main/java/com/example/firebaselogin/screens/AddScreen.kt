@@ -142,9 +142,6 @@ fun AddScreen(
                               fontWeight = FontWeight.Bold)
                       }
                   }
-        },
-        bottomBar = {
-            BottomNavigationBar(navController)
         }
     )
 }

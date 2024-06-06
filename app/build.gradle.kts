@@ -95,4 +95,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation (libs.datetime)
     coreLibraryDesugaring (libs.desugar.jdk.libs)
+
+    //Charts
+    implementation(libs.charts)
 }

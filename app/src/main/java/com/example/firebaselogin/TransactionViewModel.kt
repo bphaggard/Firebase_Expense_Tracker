@@ -2,6 +2,7 @@ package com.example.firebaselogin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.room.Transaction
 import com.example.firebaselogin.models.Transactions
 import com.example.firebaselogin.models.data.repository.TransactionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,8 +12,12 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,7 +31,27 @@ class TransactionViewModel @Inject constructor(
         _selectedCategory.value = category
     }
 
-    val allTransactions: Flow<List<Transactions>> = repository.getAllTransactions()
+    //val allTransactions: Flow<List<Transactions>> = repository.getAllTransactions()
+    private val _allTransactions = MutableStateFlow<List<Transactions>>(emptyList())
+    val allTransactions: StateFlow<List<Transactions>> = _allTransactions
+
+    init {
+        viewModelScope.launch {
+            repository.getAllTransactions()
+                .map { transactions ->
+                    transactions.sortedByDescending { parseDate(it.date) }
+                }
+                .collect {
+                    _allTransactions.value = it
+                }
+        }
+    }
+
+    private fun parseDate(dateString: String): Date {
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return sdf.parse(dateString) ?: Date(0) // Default to epoch if parsing fails
+    }
+
     val totalIncome: StateFlow<Double> = repository.getTotalIncome()
         .stateIn(viewModelScope, SharingStarted.Lazily, 0.0)
 
@@ -52,27 +77,5 @@ class TransactionViewModel @Inject constructor(
         viewModelScope.launch {
             repository.deleteTransactionById(id)
         }
-    }
-
-    fun getTransactionById(id: Int): Flow<Transactions> {
-        return repository.getTransactionById(id)
-    }
-
-    private val _inputAmount = MutableStateFlow("")
-    val inputAmount: StateFlow<String> = _inputAmount.asStateFlow()
-    fun setInputAmount(amount: String) {
-        _inputAmount.value = amount
-    }
-
-    private val _inputTitle = MutableStateFlow("")
-    val inputTitle: StateFlow<String> = _inputTitle.asStateFlow()
-    fun setInputTitle(title: String) {
-        _inputTitle.value = title
-    }
-
-    private val _inputCategory = MutableStateFlow("")
-    val inputCategory: StateFlow<String> = _inputCategory.asStateFlow()
-    fun setInputCategory(category: String) {
-        _inputCategory.value = category
     }
 }

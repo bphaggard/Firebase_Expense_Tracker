@@ -76,10 +76,10 @@ fun AppNavHost(
             HomeScreen(navController)
         }
         composable(DestinationScreen.Add.route) {
-            AddScreen(navController, viewModel)
+            AddScreen(viewModel)
         }
         composable(DestinationScreen.Transactions.route) {
-            TransactionScreen(navController, viewModel)
+            TransactionScreen(viewModel)
         }
     }
 }

@@ -288,7 +288,9 @@ fun LoginScreen(navController : NavController , viewModel : FbViewModel) {
             }
         }
         if (viewModel.signedIn.value) {
-            navController.navigate(DestinationScreen.Home.route)
+            navController.navigate(DestinationScreen.Home.route) {
+                popUpTo(navController.graph.id) { inclusive = true }
+            }
         }
         viewModel.signedIn.value = false
     }

@@ -53,6 +53,7 @@ import androidx.navigation.NavController
 import com.example.firebaselogin.FbViewModel
 import com.example.firebaselogin.R
 import com.example.firebaselogin.navigation.DestinationScreen
+import com.example.firebaselogin.parts.isSmallScreenHeight
 import com.example.firebaselogin.ui.theme.leagueFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -84,7 +85,7 @@ fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
                 .matchParentSize()
-                .blur(if (isFocused)10.dp else 0.dp)
+                .blur(if (isFocused) 10.dp else 0.dp)
         )
     }
     Column(
@@ -155,7 +156,8 @@ fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
                 .width(300.dp)
                 .height(60.dp)
                 .onFocusChanged { focusState ->
-                           isFocused = focusState.isFocused },
+                    isFocused = focusState.isFocused
+                },
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedIndicatorColor = fieldColor,
                 focusedIndicatorColor = fieldColor,
@@ -235,7 +237,8 @@ fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
                 .width(300.dp)
                 .height(60.dp)
                 .onFocusChanged { focusState ->
-                    isFocused = focusState.isFocused },
+                    isFocused = focusState.isFocused
+                },
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedIndicatorColor = fieldColor,
                 focusedIndicatorColor = fieldColor,
@@ -313,7 +316,8 @@ fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
                 .width(300.dp)
                 .height(60.dp)
                 .onFocusChanged { focusState ->
-                    isFocused = focusState.isFocused },
+                    isFocused = focusState.isFocused
+                },
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedIndicatorColor = fieldColor,
                 focusedIndicatorColor = fieldColor,
@@ -372,7 +376,11 @@ fun SignUpScreen(navController : NavController, viewModel : FbViewModel) {
                 fontWeight = FontWeight.Bold
             )
         }
-        Spacer(modifier = Modifier.height(30.dp))
+        if (isSmallScreenHeight()) {
+            Spacer(modifier = Modifier.height(0.dp))
+        } else {
+            Spacer(modifier = Modifier.height(30.dp))
+        }
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,

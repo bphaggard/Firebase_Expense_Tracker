@@ -1,5 +1,6 @@
 package com.example.firebaselogin.parts
 
+import androidx.compose.ui.graphics.Color
 import com.example.firebaselogin.R
 
 val categoryImageMap = mapOf(

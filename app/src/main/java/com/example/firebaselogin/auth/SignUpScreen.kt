@@ -53,7 +53,7 @@ import androidx.navigation.NavController
 import com.example.firebaselogin.FbViewModel
 import com.example.firebaselogin.R
 import com.example.firebaselogin.navigation.DestinationScreen
-import com.example.firebaselogin.parts.isSmallScreenHeight
+import com.example.firebaselogin.elements.isSmallScreenHeight
 import com.example.firebaselogin.ui.theme.leagueFamily
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -16,10 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.firebaselogin.TransactionViewModel
-import com.example.firebaselogin.parts.AddDefaultLineChart
-import com.example.firebaselogin.parts.TransactionCard
-import com.example.firebaselogin.parts.categoryImageMap
-import com.example.firebaselogin.parts.mapAmountToColor
+import com.example.firebaselogin.elements.AddDefaultLineChart
+import com.example.firebaselogin.elements.TransactionCard
+import com.example.firebaselogin.elements.categoryImageMap
+import com.example.firebaselogin.elements.mapAmountToColor
 
 @Composable
 fun TransactionScreen(
@@ -53,6 +53,7 @@ fun TransactionScreen(
                                 color = mapAmountToColor(transaction.category),
                                 onDismiss = { viewModel.deleteTransactionById(transaction.id) }
                             )
+                            Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
                 }

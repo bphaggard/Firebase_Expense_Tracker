@@ -1,4 +1,4 @@
-package com.example.firebaselogin.parts
+package com.example.firebaselogin.elements
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.runtime.Composable

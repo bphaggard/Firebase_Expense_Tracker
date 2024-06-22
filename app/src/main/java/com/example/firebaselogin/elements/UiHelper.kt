@@ -1,4 +1,4 @@
-package com.example.firebaselogin.parts
+package com.example.firebaselogin.elements
 
 import android.view.ViewTreeObserver
 import androidx.compose.runtime.Composable

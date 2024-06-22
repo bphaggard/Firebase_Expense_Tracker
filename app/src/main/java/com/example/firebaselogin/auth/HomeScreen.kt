@@ -41,9 +41,9 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.firebaselogin.R
 import com.example.firebaselogin.TransactionViewModel
-import com.example.firebaselogin.parts.categoryImageMap
-import com.example.firebaselogin.parts.getFormattedDate
-import com.example.firebaselogin.parts.mapAmountToColor
+import com.example.firebaselogin.elements.categoryImageMap
+import com.example.firebaselogin.elements.getFormattedDate
+import com.example.firebaselogin.elements.mapAmountToColor
 import com.example.firebaselogin.ui.theme.FirebaseLoginTheme
 import com.example.firebaselogin.ui.theme.blueGrad1
 import com.example.firebaselogin.ui.theme.blueGrad2

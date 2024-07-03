@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.example.firebaselogin.models.Summary
 import com.example.firebaselogin.models.Transactions
 import kotlinx.coroutines.flow.Flow
 
@@ -30,9 +31,12 @@ interface TransactionDao {
     @Query("DELETE FROM transactions WHERE id = :id")
     suspend fun deleteTransactionById(id: Int)
 
-    @Query("SELECT SUM(amount) FROM transactions WHERE category = 'Income'")
-    fun getTotalIncome(): Flow<Double>
+    @Query("SELECT SUM(amount) FROM transactions WHERE category = :category")
+    suspend fun getTotalByCategory(category: String): Double?
 
-    @Query("SELECT SUM(amount) FROM transactions WHERE category = 'Expense'")
-    fun getTotalExpense(): Flow<Double>
+    @Query("SELECT * FROM summary WHERE id = 1")
+    suspend fun getSummary(): Summary?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSummary(summary: Summary)
 }

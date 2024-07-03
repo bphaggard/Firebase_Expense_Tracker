@@ -1,6 +1,5 @@
 package com.example.firebaselogin.elements
 
-import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -50,7 +50,7 @@ fun TransactionCard(
                 fontFamily = leagueFamily,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp)
-                    },
+            },
             confirmButton = {
                 Button(onClick = {
                     showDialog.value = false }) {

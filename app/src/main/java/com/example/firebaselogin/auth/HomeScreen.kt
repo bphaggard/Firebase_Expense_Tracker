@@ -49,7 +49,7 @@ import com.example.firebaselogin.ui.theme.blueGrad1
 import com.example.firebaselogin.ui.theme.blueGrad2
 import com.example.firebaselogin.ui.theme.leagueFamily
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "StateFlowValueCalledInComposition")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
@@ -107,7 +107,7 @@ fun HomeScreen(
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = "$30000.00",
+                            text = viewModel.total.collectAsState().value.toString(),
                             fontSize = 30.sp,
                             fontWeight = FontWeight.Bold,
                             fontFamily = mainFont
@@ -135,7 +135,7 @@ fun HomeScreen(
                                         fontFamily = mainFont
                                     )
                                     Text(
-                                        text = "$10000.00",
+                                        text = "${viewModel.totalIncome.collectAsState().value} Kč",
                                         fontSize = 16.sp,
                                         fontWeight = FontWeight.Bold,
                                         fontFamily = mainFont
@@ -157,7 +157,7 @@ fun HomeScreen(
                                         fontFamily = mainFont
                                     )
                                     Text(
-                                        text = "$8000.00",
+                                        text = "${viewModel.totalExpense.collectAsState().value} Kč",
                                         fontSize = 16.sp,
                                         fontWeight = FontWeight.Bold,
                                         fontFamily = mainFont

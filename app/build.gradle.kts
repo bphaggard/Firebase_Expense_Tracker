@@ -97,5 +97,5 @@ dependencies {
     coreLibraryDesugaring (libs.desugar.jdk.libs)
 
     //Charts
-    implementation(libs.charts)
+    implementation(libs.ycharts)
 }

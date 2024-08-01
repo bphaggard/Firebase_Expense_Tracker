@@ -1,8 +1,5 @@
 package com.example.firebaselogin.screens
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,11 +17,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -32,7 +26,7 @@ import com.example.firebaselogin.TransactionViewModel
 import com.example.firebaselogin.elements.TransactionCard
 import com.example.firebaselogin.elements.categoryImageMap
 import com.example.firebaselogin.elements.mapAmountToColor
-import com.example.firebaselogin.models.charts.AddDefaultBarChart
+import com.example.firebaselogin.models.charts.ExpenseChart
 
 @Composable
 fun TransactionScreen(
@@ -56,7 +50,14 @@ fun TransactionScreen(
                     colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondaryContainer),
                     elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
                 ) {
-                    AddDefaultBarChart()
+                    //AddDefaultBarChart()
+                    ExpenseChart(
+                        infos = transactionList,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(350.dp)
+                            .align(CenterHorizontally)
+                    )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 LazyColumn(
@@ -84,4 +85,11 @@ fun TransactionScreen(
             }
         }
     )
+}
+
+@Composable
+fun ValuesConverter(viewModel: TransactionViewModel) {
+    val transactionList = viewModel.allTransactions.collectAsState(initial = emptyList()).value
+
+    
 }

@@ -71,7 +71,7 @@ fun AddScreen(
                   ) {
                       Card(
                           modifier = Modifier
-                              .fillMaxWidth(0.8f)
+                              .fillMaxWidth(0.85f)
                               .wrapContentHeight(Alignment.CenterVertically),
                           shape = RoundedCornerShape(22.dp),
                           colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondaryContainer),

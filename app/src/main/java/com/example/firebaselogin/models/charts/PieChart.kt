@@ -1,14 +1,8 @@
 package com.example.firebaselogin.models.charts
 
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -25,6 +19,7 @@ import co.yml.charts.ui.linechart.model.LineStyle
 import co.yml.charts.ui.linechart.model.SelectionHighlightPoint
 import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
+import com.example.firebaselogin.models.Transactions
 
 @Composable
 fun AddDefaultBarChart() {
@@ -98,4 +93,10 @@ fun AddDefaultBarChart() {
         modifier = Modifier.fillMaxSize(),
         lineChartData = lineChartData
     )
+}
+
+private fun List<Transactions>.toPoints(): List<Point> {
+    return this.mapIndexed { index, transactions ->
+        Point(index.toFloat(), transactions.amount.toFloat())
+    }
 }

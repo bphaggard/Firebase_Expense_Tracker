@@ -107,7 +107,7 @@ fun HomeScreen(
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = viewModel.total.collectAsState().value.toString(),
+                            text = "${viewModel.total.collectAsState().value} Kč",
                             fontSize = 30.sp,
                             fontWeight = FontWeight.Bold,
                             fontFamily = mainFont
@@ -239,7 +239,8 @@ fun ItemCard(
             horizontalAlignment = Alignment.End
         ) {
             Text(
-                text = "$amount Kč",
+                text = if (color == Color.Red) {
+                    "-$amount Kč"} else "+$amount Kč",
                 color = color,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
